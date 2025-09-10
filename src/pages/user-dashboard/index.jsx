@@ -9,6 +9,7 @@ import MoodTracker from './components/MoodTracker';
 import QuickActions from './components/QuickActions';
 import PersonalizedInsights from './components/PersonalizedInsights';
 import Icon from '../../components/AppIcon';
+import Button from '../../components/ui/Button';
 
 
 const UserDashboard = () => {
@@ -114,6 +115,10 @@ const UserDashboard = () => {
 
   const handleViewProfile = () => {
     navigate('/user-profile');
+  };
+
+  const handleAIChat = () => {
+    navigate('/ai-chat');
   };
 
   const handleViewInsightDetails = () => {
@@ -256,6 +261,21 @@ const UserDashboard = () => {
           </div>
         </div>
       </main>
+      
+      {/* Floating AI Chat Button */}
+      <div className="fixed bottom-6 right-6 z-50">
+        <Button
+          onClick={handleAIChat}
+          size="lg"
+          className="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white shadow-lg hover:shadow-xl transition-all duration-300 rounded-full w-16 h-16 p-0 group"
+        >
+          <div className="flex flex-col items-center justify-center">
+            <Icon name="Bot" size={24} className="mb-1 group-hover:scale-110 transition-transform" />
+            <span className="text-xs font-medium">AI Chat</span>
+          </div>
+        </Button>
+      </div>
+      
       {/* Location Permission Prompt */}
       <WeatherLocationPrompt
         isOpen={showLocationPrompt}

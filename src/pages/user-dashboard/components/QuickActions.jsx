@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Icon from '../../../components/AppIcon';
 import Button from '../../../components/ui/Button';
 
@@ -6,9 +7,20 @@ const QuickActions = ({
   onMoodAssessment, 
   onWeatherUpdate, 
   onBrowseCatalog, 
-  onViewProfile 
+  onViewProfile,
+  onCustomizeDashboard // Add this prop for customization handler
 }) => {
+  const navigate = useNavigate();
   const quickActionItems = [
+    {
+      id: 'ai-recommendation',
+      title: 'AI Outfit Recommendation',
+      description: 'Get personalized outfit ideas',
+      icon: 'Sparkles',
+      color: 'bg-primary/10 text-primary',
+      action: () => navigate('/ai-chat'),
+      shortcut: 'A'
+    },
     {
       id: 'mood',
       title: 'Mood Check',
@@ -155,7 +167,7 @@ const QuickActions = ({
             className="justify-start"
             iconName="Settings"
             iconPosition="left"
-            onClick={onViewProfile}
+            onClick={onCustomizeDashboard}
           >
             Customize Dashboard
           </Button>

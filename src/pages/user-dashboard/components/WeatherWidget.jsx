@@ -5,45 +5,45 @@ import Button from '../../../components/ui/Button';
 const WeatherWidget = ({ location, onLocationChange }) => {
   const [weatherData, setWeatherData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [temperatureUnit, setTemperatureUnit] = useState('F'); // F or C
+  const [temperatureUnit, setTemperatureUnit] = useState('C'); // F or C
 
-  // Mock weather data
+  // Mock weather data with Indian cities and Celsius temperatures
   const mockWeatherData = {
     current: {
-      temperature: 68,
+      temperature: 28,
       condition: "Partly Cloudy",
-      humidity: 65,
-      windSpeed: 8,
-      uvIndex: 4,
+      humidity: 70,
+      windSpeed: 12,
+      uvIndex: 6,
       icon: "CloudSun"
     },
     forecast: [
       {
         time: "12 PM",
-        temperature: 72,
+        temperature: 32,
         condition: "Sunny",
         icon: "Sun"
       },
       {
         time: "3 PM",
-        temperature: 75,
-        condition: "Sunny",
+        temperature: 35,
+        condition: "Hot",
         icon: "Sun"
       },
       {
         time: "6 PM",
-        temperature: 70,
+        temperature: 30,
         condition: "Partly Cloudy",
         icon: "CloudSun"
       },
       {
         time: "9 PM",
-        temperature: 65,
+        temperature: 26,
         condition: "Clear",
         icon: "Moon"
       }
     ],
-    location: location || "New York, NY",
+    location: location || "Mumbai, Maharashtra",
     lastUpdated: new Date()
   };
 
@@ -60,17 +60,22 @@ const WeatherWidget = ({ location, onLocationChange }) => {
   }, [location]);
 
   const convertTemperature = (temp) => {
-    if (temperatureUnit === 'C') {
+    if (temperatureUnit === 'F' && temp <= 40) {
+      // Convert Celsius to Fahrenheit
+      return Math.round((temp * 9/5) + 32);
+    } else if (temperatureUnit === 'C' && temp > 40) {
+      // Convert Fahrenheit to Celsius
       return Math.round((temp - 32) * 5/9);
     }
     return temp;
   };
 
   const getOutfitSuggestion = (temp) => {
-    if (temp >= 75) return "Light fabrics, breathable colors";
-    if (temp >= 65) return "Layered look, medium weight fabrics";
-    if (temp >= 50) return "Warm layers, darker colors";
-    return "Heavy fabrics, insulating layers";
+    // Adjusted for Celsius and Indian climate
+    if (temp >= 35) return "Light cotton, linen fabrics, pastels";
+    if (temp >= 25) return "Breathable fabrics, light colors";
+    if (temp >= 15) return "Light layers, cotton blends";
+    return "Warm layers, wool, darker colors";
   };
 
   if (isLoading) {
@@ -153,7 +158,7 @@ const WeatherWidget = ({ location, onLocationChange }) => {
             </div>
             <p className="font-caption text-xs text-muted-foreground">Wind</p>
             <p className="font-body font-medium text-sm text-foreground">
-              {weatherData?.current?.windSpeed} mph
+              {weatherData?.current?.windSpeed} km/h
             </p>
           </div>
           <div className="text-center">

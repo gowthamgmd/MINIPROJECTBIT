@@ -52,12 +52,22 @@ const UserRegistration = () => {
 
   const handleFormSubmit = async (formData) => {
     setIsLoading(true);
-    
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      // Store personal info and move to next step
+      const response = await fetch('http://localhost:5000/api/auth/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          username: formData.firstName + ' ' + formData.lastName,
+          email: formData.email,
+          password: formData.password
+        })
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        alert(data.message || 'Registration failed.');
+        setIsLoading(false);
+        return;
+      }
       setRegistrationData(prev => ({
         ...prev,
         personalInfo: formData
@@ -65,7 +75,7 @@ const UserRegistration = () => {
       
       setCurrentStep(2);
     } catch (error) {
-      console.error('Registration failed:', error);
+      alert('Registration failed.');
     } finally {
       setIsLoading(false);
     }

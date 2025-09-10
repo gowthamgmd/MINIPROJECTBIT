@@ -29,41 +29,24 @@ const UserLogin = () => {
   const handleLogin = async (formData) => {
     setIsLoading(true);
     setError('');
-
     try {
-      // Simulate API call delay
-      await new Promise(resolve => setTimeout(resolve, 1500));
-
-      // Check credentials
-      if (formData?.email === mockCredentials?.email && formData?.password === mockCredentials?.password) {
-        // Mock successful login
-        const mockUser = {
-          id: 'user_123',
-          name: 'Alex Johnson',
-          email: formData?.email,
-          avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face',
-          preferences: {
-            style: 'casual',
-            colors: ['blue', 'green', 'neutral'],
-            weatherSensitive: true
-          },
-          joinedDate: '2024-01-15'
-        };
-
-        // Store auth data
-        localStorage.setItem('authToken', 'mock_jwt_token_' + Date.now());
-        localStorage.setItem('userData', JSON.stringify(mockUser));
-
-        // Remember me functionality
-        if (formData?.rememberMe) {
-          localStorage.setItem('rememberUser', 'true');
-        }
-
-        // Navigate to dashboard
-        navigate('/user-dashboard');
-      } else {
-        setError(`Invalid credentials. Use: ${mockCredentials?.email} / ${mockCredentials?.password}`);
+      const response = await fetch('http://localhost:5000/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: formData.email, password: formData.password })
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        setError(data.message || 'Login failed. Please try again.');
+        setIsLoading(false);
+        return;
       }
+      localStorage.setItem('authToken', data.token);
+      localStorage.setItem('userData', JSON.stringify(data.user));
+      if (formData?.rememberMe) {
+        localStorage.setItem('rememberUser', 'true');
+      }
+      navigate('/user-dashboard');
     } catch (err) {
       setError('Login failed. Please try again.');
     } finally {

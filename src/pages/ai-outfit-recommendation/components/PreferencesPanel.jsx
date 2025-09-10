@@ -22,10 +22,10 @@ const PreferencesPanel = ({ preferences, onPreferencesChange }) => {
   ];
 
   const budgetOptions = [
-    { value: 'low', label: '$ Budget-Friendly' },
-    { value: 'medium', label: '$$ Moderate' },
-    { value: 'high', label: '$$$ Premium' },
-    { value: 'luxury', label: '$$$$ Luxury' }
+    { value: 'low', label: '₹ Budget-Friendly (₹1,000-3,000)' },
+    { value: 'medium', label: '₹₹ Moderate (₹3,000-8,000)' },
+    { value: 'high', label: '₹₹₹ Premium (₹8,000-20,000)' },
+    { value: 'luxury', label: '₹₹₹₹ Luxury (₹20,000+)' }
   ];
 
   const colorPreferenceOptions = [

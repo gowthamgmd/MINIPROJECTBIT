@@ -58,7 +58,7 @@ For each outfit, provide:
 Also provide 3 general styling insights based on their preferences and current situation.`;
 
     const response = await openai?.chat?.completions?.create({
-      model: 'gpt-5-mini',
+      model: 'gpt-4o-mini',
       messages: [
         {
           role: 'system',
@@ -161,7 +161,7 @@ User's follow-up question: ${question}
 Please provide a helpful, specific answer that relates to their outfit recommendations and personal style context.`;
 
     const response = await openai?.chat?.completions?.create({
-      model: 'gpt-5-mini',
+      model: 'gpt-4o-mini',
       messages: [
         {
           role: 'system',

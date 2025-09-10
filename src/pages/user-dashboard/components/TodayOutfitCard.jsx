@@ -18,7 +18,7 @@ const TodayOutfitCard = ({ weatherData, moodData, onRefresh, onViewAlternatives 
         name: "Wool Blend Sweater",
         category: "Top",
         color: "#8B4513",
-        price: 89.99,
+        price: 2499,
         image: "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=300&h=300&fit=crop",
         affiliateLink: "#"
       },
@@ -27,7 +27,7 @@ const TodayOutfitCard = ({ weatherData, moodData, onRefresh, onViewAlternatives 
         name: "Dark Wash Jeans",
         category: "Bottom",
         color: "#2F4F4F",
-        price: 79.99,
+        price: 1899,
         image: "https://images.unsplash.com/photo-1542272604-787c3835535d?w=300&h=300&fit=crop",
         affiliateLink: "#"
       },
@@ -36,12 +36,12 @@ const TodayOutfitCard = ({ weatherData, moodData, onRefresh, onViewAlternatives 
         name: "Leather Ankle Boots",
         category: "Shoes",
         color: "#8B4513",
-        price: 129.99,
+        price: 3999,
         image: "https://images.unsplash.com/photo-1544966503-7cc5ac882d5f?w=300&h=300&fit=crop",
         affiliateLink: "#"
       }
     ],
-    totalPrice: 299.97,
+    totalPrice: 8397,
     moodMatch: 92,
     weatherMatch: 88
   };
@@ -157,7 +157,7 @@ const TodayOutfitCard = ({ weatherData, moodData, onRefresh, onViewAlternatives 
                 </h5>
                 <div className="flex items-center justify-between">
                   <span className="font-body font-semibold text-primary">
-                    ${item?.price}
+                    ₹{item?.price.toLocaleString('en-IN')}
                   </span>
                   <Button
                     variant="outline"
@@ -179,7 +179,7 @@ const TodayOutfitCard = ({ weatherData, moodData, onRefresh, onViewAlternatives 
               Complete Outfit Total
             </span>
             <span className="font-heading font-semibold text-xl text-primary">
-              ${todayOutfit?.totalPrice}
+              ₹{todayOutfit?.totalPrice.toLocaleString('en-IN')}
             </span>
           </div>
           <p className="font-caption text-sm text-muted-foreground mt-1">
