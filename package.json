@@ -1,0 +1,41 @@
+{
+  "name": "colorsense-fullstack",
+  "version": "1.0.0",
+  "description": "AI-powered fashion styling platform for India",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd backend && npm run dev",
+    "client": "cd colorsense && npm run dev",
+    "install:all": "npm install && cd backend && npm install && cd ../colorsense && npm install",
+    "build": "cd colorsense && npm run build",
+    "start": "cd backend && npm start",
+    "seed": "cd backend && npm run seed",
+    "test": "concurrently \"cd backend && npm test\" \"cd colorsense && npm test\"",
+    "clean": "rmdir /s /q node_modules backend\\node_modules colorsense\\node_modules 2>nul || true"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "vite": "^7.1.5"
+  },
+  "keywords": [
+    "fashion",
+    "ai",
+    "styling",
+    "india",
+    "ecommerce",
+    "react",
+    "node",
+    "mongodb"
+  ],
+  "author": "ColorSense Team",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "workspaces": [
+    "backend",
+    "colorsense"
+  ]
+}
