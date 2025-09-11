@@ -1,10 +1,10 @@
 # Netlify configuration file
 
 [build]
-  # Build command
+  # Build command (runs from root, builds frontend)
   command = "npm run build"
   # Directory where the build output is located
-  publish = "build/"
+  publish = "colorsense/build/"
 
 # Environment variables for production
 [build.environment]
